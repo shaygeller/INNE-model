@@ -47,11 +47,12 @@ class INNE:
 
     @staticmethod
     def create_samples(X_data, n_samples, sample_size, random_seed):
-        # Make things reproducible
-        np.random.seed(random_seed)
-
+        
         samples = []
         for i in range(n_samples):
+		    # Make things reproducible
+			np.random.seed(random_seed*i)
+			
             sample = X_data[np.random.choice(range(X_data.shape[0]), sample_size, replace=False)]
             samples.append(sample)
         samples = np.stack(samples, axis=0)
